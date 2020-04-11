@@ -17,16 +17,16 @@ namespace WebAdressbookTests
         [Test]
         public void ContactCreationTest()
         {
-            GoToHomePage();
-            Login(new AccountData("admin", "secret"));
-            GoToContactPage();
-            InitNewContact();
+            app.Navigator.GoToHomePage();
+            app.Auth.Login(new AccountData("admin", "secret"));
+            app.Navigator.GoToContactPage();
+            app.Contact.InitNewContact();
             ContactData contact = new ContactData("Ivan");
             //contact.Sname = "Petrovich";
             contact.Lname = "Pupkin";
-            FillContactForm(contact);
-            SubmitContactForm();
-            Logout();
+            app.Contact.FillContactForm(contact);
+            app.Contact.SubmitContactForm();
+            app.Auth.Logout();
         }
 
     }

@@ -19,14 +19,14 @@ namespace WebAdressbookTests
         [Test]
         public void ContactRemovalTest()
         {
-            GoToHomePage();
-            Login(new AccountData("admin", "secret"));
-            GoToContactPage();
-            GoToHomePage();
-            SelectContact();
-            RemoveContact();
-            GoToHomePage();
-            Logout();
+            app.Navigator.GoToHomePage();
+            app.Auth.Login(new AccountData("admin", "secret"));
+            app.Navigator.GoToContactPage();
+            app.Navigator.GoToHomePage();
+            app.Contact.SelectContact();
+            app.Contact.RemoveContact();
+            app.Navigator.GoToHomePage();
+            app.Auth.Logout();
         }
     }
 
