@@ -18,17 +18,63 @@ namespace WebAdressbookTests
     {
         protected bool acceptNextAlert = true;
 
-        public ContactHelper(IWebDriver driver) : base(driver)
+        public ContactHelper createContact(ContactData contact)
+        {
+            manager.Navigator.GoToContactPage();
+            InitNewContact();
+            FillContactForm(contact);
+            SubmitContactForm();
+            return this;
+        }
+
+        public ContactHelper Modify(int v, ContactData newDataC)
+        {
+            manager.Navigator.GoToContactPage();
+            manager.Navigator.GoToHomePage();
+            SelectContactModification();
+            FillContactForm(newDataC);
+            SubmitContactModificationForm();
+
+
+            return this;
+        }
+
+        public ContactHelper SubmitContactModificationForm()
+        {
+            driver.FindElement(By.Name("update")).Click();
+            return this;
+        }
+
+        public ContactHelper SelectContactModification()
+        {
+            driver.FindElement(By.Id("6")).Click();
+            driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
+            return this;
+        }
+
+        public ContactHelper Remove(int v)
+        {
+            manager.Navigator.GoToContactPage();
+            manager.Navigator.GoToHomePage();
+            SelectContact();
+            RemoveContact();
+            manager.Navigator.GoToHomePage();
+            return this;
+        }
+
+        public ContactHelper(ApplicationManager manager) : base(manager)
         {
           //
         }
 
-        public void SubmitContactForm()
+        public ContactHelper SubmitContactForm()
         {
             driver.FindElement(By.Name("submit")).Click();
+            return this;
         }
+    
 
-        public void FillContactForm(ContactData contact)
+        public ContactHelper FillContactForm(ContactData contact)
         {
             driver.FindElement(By.Name("firstname")).Click();
             driver.FindElement(By.Name("firstname")).Clear();
@@ -36,24 +82,32 @@ namespace WebAdressbookTests
             driver.FindElement(By.Name("lastname")).Click();
             driver.FindElement(By.Name("lastname")).Clear();
             driver.FindElement(By.Name("lastname")).SendKeys(contact.Lname);
+            return this;
         }
+    
 
-        public void InitNewContact()
+        public ContactHelper InitNewContact()
         {
             driver.FindElement(By.LinkText("add new")).Click();
+            return this;
         }
+    
 
-        public void RemoveContact()
+        public ContactHelper RemoveContact()
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
             Microsoft.VisualStudio.TestTools.UnitTesting.Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
+            return this;
         }
+    
 
-        public void SelectContact()
+        public ContactHelper SelectContact()
         {
             driver.FindElement(By.Id("5")).Click(); //???
            acceptNextAlert = true;
+            return this;
         }
+    
 
 
 

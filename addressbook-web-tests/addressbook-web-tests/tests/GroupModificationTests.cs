@@ -4,23 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Support.UI;
 
 namespace WebAdressbookTests
 {
-   
-    public class GroupRemovalTests : TestBase
+    [TestFixture]
+    public class GroupModificationTests : TestBase
     {
-       
-
         [Test]
         public void GroupRemovalTest()
         {
-            app.Group.Remove(1);
-           
-        }
+            GroupData newData = new GroupData("nnn");
+            newData.Header = "ttt";
+            newData.Footer = "vvv";
+            app.Group.Modify(1, newData);
 
+
+        }
     }
 }
