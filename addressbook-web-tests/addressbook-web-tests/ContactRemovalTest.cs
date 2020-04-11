@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading;
+using System.Threading.Tasks;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
@@ -10,25 +12,22 @@ using OpenQA.Selenium.Support.UI;
 namespace WebAdressbookTests
 {
     [TestFixture]
-    public class ContactCreationTests : TestBase
+    public class ContactRemovalTests : TestBase
     {
-        
+
 
         [Test]
-        public void ContactCreationTest()
+        public void ContactRemovalTest()
         {
             GoToHomePage();
             Login(new AccountData("admin", "secret"));
             GoToContactPage();
-            InitNewContact();
-            ContactData contact = new ContactData("Ivan");
-            //contact.Sname = "Petrovich";
-            contact.Lname = "Pupkin";
-            FillContactForm(contact);
-            SubmitContactForm();
+            GoToHomePage();
+            SelectContact();
+            RemoveContact();
+            GoToHomePage();
             Logout();
         }
-
     }
-}
 
+}
