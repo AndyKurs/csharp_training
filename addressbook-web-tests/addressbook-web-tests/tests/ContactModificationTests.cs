@@ -15,12 +15,12 @@ namespace WebAdressbookTests
     public class ContactModificationTests : TestBase
     {
         [Test]
-        public void GroupRemovalTest()
+        public void ContactModificationTest()
         {
             ContactData newDataC = new ContactData("Ivanchik");
             //newDataC.Sname = "Petrovichus";
             newDataC.Lname = "Pupkinov";
-            app.Contact.Modify(6, newDataC);
+            app.Contact.Modify(newDataC);
             app.Auth.Logout();
 
         }

@@ -27,7 +27,7 @@ namespace WebAdressbookTests
             return this;
         }
 
-        public ContactHelper Modify(int v, ContactData newDataC)
+        public ContactHelper Modify(ContactData newDataC)
         {
             manager.Navigator.GoToContactPage();
             manager.Navigator.GoToHomePage();
@@ -47,12 +47,12 @@ namespace WebAdressbookTests
 
         public ContactHelper SelectContactModification()
         {
-            driver.FindElement(By.Id("6")).Click();
+            //driver.FindElement(By.Id("6")).Click();
             driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
             return this;
         }
 
-        public ContactHelper Remove(int v)
+        public ContactHelper Remove()
         {
             manager.Navigator.GoToContactPage();
             manager.Navigator.GoToHomePage();
@@ -103,8 +103,9 @@ namespace WebAdressbookTests
 
         public ContactHelper SelectContact()
         {
-            driver.FindElement(By.Id("5")).Click(); //???
-           acceptNextAlert = true;
+            driver.FindElement(By.XPath("//table[@id='maintable']/tbody/tr[2]/td/input")).Click();     //By.Id("5")).Click(); //???
+           
+            acceptNextAlert = true;
             return this;
         }
     

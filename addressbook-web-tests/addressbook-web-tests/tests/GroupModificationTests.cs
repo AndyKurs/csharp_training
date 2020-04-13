@@ -11,12 +11,12 @@ namespace WebAdressbookTests
     public class GroupModificationTests : TestBase
     {
         [Test]
-        public void GroupRemovalTest()
+        public void GroupModificationTest()
         {
             GroupData newData = new GroupData("nnn");
             newData.Header = "ttt";
             newData.Footer = "vvv";
-            app.Group.Modify(1, newData);
+            app.Group.Modify(2, newData);
 
 
         }

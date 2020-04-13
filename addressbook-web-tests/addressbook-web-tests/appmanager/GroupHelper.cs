@@ -100,10 +100,10 @@ namespace WebAdressbookTests
             return this;
         }
 
-        public GroupHelper SelectGroup(int index)
+        public GroupHelper SelectGroup(int v)
         {
-            driver.FindElement(By.Name("selected[]")).Click(); //By.Name("selected[]")).Click();
-            //By.XPath("//input[@name='selected[]'])[" + index + "]")).Click();
+            driver.FindElement(By.XPath("//span[" + v + "]/input")).Click(); //By.Name("selected[]")).Click();
+            //By.XPath("//input[@name='selected[]'])[" + v + "]")).Click();
             return this;
         }
     }

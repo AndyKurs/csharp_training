@@ -19,7 +19,7 @@ namespace WebAdressbookTests
         [Test]
         public void ContactRemovalTest()
         {
-            app.Contact.Remove(5);
+            app.Contact.Remove();
             app.Auth.Logout();
         }
     }
