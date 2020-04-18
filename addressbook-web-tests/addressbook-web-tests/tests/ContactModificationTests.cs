@@ -20,9 +20,12 @@ namespace WebAdressbookTests
             ContactData newDataC = new ContactData("Ivanchikoff");
             //newDataC.Sname = "Petrovichus";
             newDataC.Lname = null; // "Pupkinov";
+            app.Navigator.GoToContactPage();
+            if (!app.Contact.IsContactPresent())
+            {
+                app.Contact.createContact(newDataC);
+            }
             app.Contact.Modify(newDataC);
-           // app.Auth.Logout();
-
         }
     }
 }

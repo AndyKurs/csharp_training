@@ -47,7 +47,6 @@ namespace WebAdressbookTests
 
         public ContactHelper SelectContactModification()
         {
-            //driver.FindElement(By.Id("6")).Click();
             driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
             return this;
         }
@@ -76,14 +75,8 @@ namespace WebAdressbookTests
 
         public ContactHelper FillContactForm(ContactData contact)
         {
-            //driver.FindElement(By.Name("firstname")).Click();
             Type(By.Name("firstname"), contact.Fname);
-            //driver.FindElement(By.Name("firstname")).Clear();
-            //driver.FindElement(By.Name("firstname")).SendKeys(contact.Fname);
-            //driver.FindElement(By.Name("lastname")).Click();
             Type(By.Name("lastname"), contact.Lname);
-            //driver.FindElement(By.Name("lastname")).Clear();
-            //driver.FindElement(By.Name("lastname")).SendKeys(contact.Lname);
             return this;
         }
     
@@ -110,7 +103,13 @@ namespace WebAdressbookTests
             acceptNextAlert = true;
             return this;
         }
-    
+
+        public bool IsContactPresent()
+        {
+            var elements = driver.FindElements(By.XPath("//img[@alt='Edit']"));
+            return (elements.Count() == 1);
+        }
+
 
 
 

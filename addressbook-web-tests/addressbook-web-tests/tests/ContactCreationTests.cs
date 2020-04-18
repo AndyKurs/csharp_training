@@ -21,10 +21,7 @@ namespace WebAdressbookTests
             //contact.Sname = "Petrovich";
             contact.Lname = "Pupkin";
             app.Contact.createContact(contact);
-            
-            //app.Auth.Logout();
         }
-
     }
 }
 

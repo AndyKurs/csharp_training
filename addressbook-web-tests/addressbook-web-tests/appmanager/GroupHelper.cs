@@ -24,7 +24,6 @@ namespace WebAdressbookTests
             InitGroupCreation();
             FillGroupForm(group);
             SubmitGroupCreation();
-            //ReturnToGroupsPage();
             return this;
         }
 
@@ -77,11 +76,8 @@ namespace WebAdressbookTests
         public GroupHelper FillGroupForm(GroupData group) //string name, string header, string footer)
         {
             
-            // driver.FindElement(locator).Click();
             Type(By.Name("group_name"), group.Name);
-            //driver.FindElement(By.Name("group_header")).Click();
             Type(By.Name("group_header"), group.Header);
-            // driver.FindElement(By.Name("group_footer")).Click();
             Type(By.Name("group_footer"), group.Footer);
             return this;
         }
@@ -99,10 +95,15 @@ namespace WebAdressbookTests
             return this;
         }
 
+        public bool IsGropPresent(int grpoupIndex)
+        {
+            var elements = driver.FindElements(By.XPath("//span[" + grpoupIndex + "]/input"));
+            return (elements.Count() == 1);
+        }
+
         public GroupHelper SelectGroup(int v)
         {
             driver.FindElement(By.XPath("//span[" + v + "]/input")).Click(); //By.Name("selected[]")).Click();
-            //By.XPath("//input[@name='selected[]'])[" + v + "]")).Click();
             return this;
         }
     }

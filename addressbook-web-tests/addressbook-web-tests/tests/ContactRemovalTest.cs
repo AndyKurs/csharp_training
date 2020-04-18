@@ -18,8 +18,15 @@ namespace WebAdressbookTests
         [Test]
         public void ContactRemovalTest()
         {
+            ContactData newDataC = new ContactData("Ivanchikoff");
+            newDataC.Lname = "Pupkinov";
+            app.Navigator.GoToContactPage();
+            if (!app.Contact.IsContactPresent())
+            {
+                app.Contact.createContact(newDataC);
+            }
             app.Contact.Remove();
-            //app.Auth.Logout();
+
         }
     }
 

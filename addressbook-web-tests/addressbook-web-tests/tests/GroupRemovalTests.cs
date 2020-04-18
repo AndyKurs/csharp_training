@@ -18,7 +18,16 @@ namespace WebAdressbookTests
         [Test]
         public void GroupRemovalTest()
         {
-            app.Group.Remove(2);
+            GroupData newData = new GroupData("eee");
+            newData.Header = "ffdgf";
+            newData.Footer = "fhhky";
+            int groupIndex = 1;
+            app.Navigator.GoToGroupsPage();
+            if (!app.Group.IsGropPresent(groupIndex))
+            {
+                app.Group.createGroup(newData);
+            }
+            app.Group.Remove(1);
            
         }
 

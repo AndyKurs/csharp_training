@@ -20,7 +20,6 @@ namespace WebAdressbookTests
             group.Header = "t98";
             group.Footer = "v98";
             app.Group.createGroup(group);
-           // app.Auth.Logout();
         }
         
         [Test]
@@ -30,8 +29,6 @@ namespace WebAdressbookTests
             group.Header = "";
             group.Footer = "";
             app.Group.createGroup(group);
-                
-            //app.Auth.Logout();
         }
     }
 }
