@@ -10,17 +10,17 @@ using OpenQA.Selenium.Support.UI;
 namespace WebAdressbookTests
 {
     [TestFixture]
-    public class GroupCreationTests : TestBase
+    public class GroupCreationTests : AuthTestBase
     {
         
         [Test]
         public void GroupCreationTest()
         {
-            GroupData group = new GroupData("n");
-            group.Header = "t";
-            group.Footer = "v";
+            GroupData group = new GroupData("n98");
+            group.Header = "t98";
+            group.Footer = "v98";
             app.Group.createGroup(group);
-            app.Auth.Logout();
+           // app.Auth.Logout();
         }
         
         [Test]
@@ -31,7 +31,7 @@ namespace WebAdressbookTests
             group.Footer = "";
             app.Group.createGroup(group);
                 
-            app.Auth.Logout();
+            //app.Auth.Logout();
         }
     }
 }

@@ -12,16 +12,16 @@ using OpenQA.Selenium.Support.UI;
 namespace WebAdressbookTests
 {
     [TestFixture]
-    public class ContactModificationTests : TestBase
+    public class ContactModificationTests : AuthTestBase
     {
         [Test]
         public void ContactModificationTest()
         {
-            ContactData newDataC = new ContactData("Ivanchik");
+            ContactData newDataC = new ContactData("Ivanchikoff");
             //newDataC.Sname = "Petrovichus";
-            newDataC.Lname = "Pupkinov";
+            newDataC.Lname = null; // "Pupkinov";
             app.Contact.Modify(newDataC);
-            app.Auth.Logout();
+           // app.Auth.Logout();
 
         }
     }

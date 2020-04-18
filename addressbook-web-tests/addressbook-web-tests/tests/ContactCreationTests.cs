@@ -10,7 +10,7 @@ using OpenQA.Selenium.Support.UI;
 namespace WebAdressbookTests
 {
     [TestFixture]
-    public class ContactCreationTests : TestBase
+    public class ContactCreationTests : AuthTestBase
     {
         
 
@@ -22,7 +22,7 @@ namespace WebAdressbookTests
             contact.Lname = "Pupkin";
             app.Contact.createContact(contact);
             
-            app.Auth.Logout();
+            //app.Auth.Logout();
         }
 
     }

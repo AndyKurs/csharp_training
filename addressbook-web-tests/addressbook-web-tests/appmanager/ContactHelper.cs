@@ -76,12 +76,14 @@ namespace WebAdressbookTests
 
         public ContactHelper FillContactForm(ContactData contact)
         {
-            driver.FindElement(By.Name("firstname")).Click();
-            driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys(contact.Fname);
-            driver.FindElement(By.Name("lastname")).Click();
-            driver.FindElement(By.Name("lastname")).Clear();
-            driver.FindElement(By.Name("lastname")).SendKeys(contact.Lname);
+            //driver.FindElement(By.Name("firstname")).Click();
+            Type(By.Name("firstname"), contact.Fname);
+            //driver.FindElement(By.Name("firstname")).Clear();
+            //driver.FindElement(By.Name("firstname")).SendKeys(contact.Fname);
+            //driver.FindElement(By.Name("lastname")).Click();
+            Type(By.Name("lastname"), contact.Lname);
+            //driver.FindElement(By.Name("lastname")).Clear();
+            //driver.FindElement(By.Name("lastname")).SendKeys(contact.Lname);
             return this;
         }
     

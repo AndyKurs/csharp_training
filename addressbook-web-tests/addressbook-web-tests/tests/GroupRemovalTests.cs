@@ -10,8 +10,8 @@ using OpenQA.Selenium.Support.UI;
 
 namespace WebAdressbookTests
 {
-   
-    public class GroupRemovalTests : TestBase
+    [TestFixture]
+    public class GroupRemovalTests : AuthTestBase
     {
        
 
