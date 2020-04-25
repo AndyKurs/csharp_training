@@ -17,22 +17,37 @@ namespace WebAdressbookTests
         [Test]
         public void ContactModificationTest()
         {
-            ContactData newDataC = new ContactData("Juaroslav", "Ivanchikoff");
             //newDataC.Sname = "Petrovichus";
             //newDataC.Lname = null; // "Pupkinov";
             app.Navigator.GoToContactPage();
             if (!app.Contact.IsContactPresent())
             {
+                ContactData newDataC = new ContactData("Juaroslav", "Ivanchikoff");
                 app.Contact.createContact(newDataC);
             }
             List<ContactData> oldContacts = app.Contact.GetContactList();
-            app.Contact.Modify(newDataC);
+            ContactData oldData = oldContacts[0];
+
+            ContactData update = new ContactData("Peter", "The Great");
+            app.Contact.Modify(update);
+
+            Assert.AreEqual(oldContacts.Count, app.Contact.GetContactCount());
             List<ContactData> newContacts = app.Contact.GetContactList();
-            
-            oldContacts[0].Fname = newDataC.Fname;
+
+            oldContacts[0] = update;
+
             oldContacts.Sort();
             newContacts.Sort();
             Assert.AreEqual(oldContacts, newContacts);
+            foreach (ContactData contact in newContacts)
+            {
+                if (contact.Id == oldData.Id)
+                {
+                    Assert.AreEqual(update.Lname, contact.Lname);
+                    Assert.AreEqual(update.Fname, contact.Fname);
+                }
+               
+            }
         }
     }
 }

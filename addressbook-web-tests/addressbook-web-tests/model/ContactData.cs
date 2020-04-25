@@ -9,16 +9,20 @@ namespace WebAdressbookTests
 {
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
-        private string fname;
-        private string sname = "";
-        private string lname = "";
+        //private string fname;
+        //private string sname = "";
+        //private string lname = "";
 
         public ContactData(string fname, string lname)
         {
-            this.fname = fname;
-            this.lname = lname;
+            Fname = fname;
+            Lname = lname;
         }
 
+        public override string ToString()
+        {
+            return "Contact fname: \"" + Fname + "\", sname: \"" + "sname" + "\", lname: \"" + Lname + "\"";
+        }
         public bool Equals(ContactData other)
         {
             if (Object.ReferenceEquals(other, null))
@@ -53,40 +57,15 @@ namespace WebAdressbookTests
             return ret;
         }
 
-        public string Fname
-        {
-            get
-            {
-                return fname;
-            }
-            set
-            {
-                fname = value;
-            }
-        }
+        public string Fname { get; set; }
+        
 
-        public string Sname
-        {
-            get
-            {
-                return sname;
-            }
-            set
-            {
-                sname = value;
-            }
-        }
+        public string Sname { get; set; }
+        
 
-        public string Lname
-        {
-            get
-            {
-                return lname;
-            }
-            set
-            {
-                lname = value;
-            }
-        }
+        public string Lname { get; set; }
+
+        public string Id { get; set; }
+
     }
 }

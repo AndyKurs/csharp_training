@@ -23,6 +23,7 @@ namespace WebAdressbookTests
             //contact.Lname = "Pupkin";
             List<ContactData> oldContacts = app.Contact.GetContactList();
             app.Contact.createContact(contact);
+            Assert.AreEqual(oldContacts.Count + 1, app.Contact.GetContactCount());
             List<ContactData> newContacts = app.Contact.GetContactList();
             //Assert.AreEqual(oldContacts.Count + 1, newContacts.Count);
             oldContacts.Add(contact);
