@@ -41,7 +41,7 @@ namespace WebAdressbookTests
 
         public void GoToContactPage()
         {
-            driver.FindElement(By.XPath("//body")).Click();
+            GoToHomePage();
         }
     }
 }

@@ -27,8 +27,13 @@ namespace WebAdressbookTests
             {
                 app.Group.createGroup(newData);
             }
-            app.Group.Remove(1);
+            List<GroupData> oldGroups = app.Group.GetGroupList();
            
+            app.Group.Remove(0);
+            List<GroupData> newGroups = app.Group.GetGroupList();
+            oldGroups.RemoveAt(0);
+            Assert.AreEqual(oldGroups, newGroups);
+
         }
 
     }

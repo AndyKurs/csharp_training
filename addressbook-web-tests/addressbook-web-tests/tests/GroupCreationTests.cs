@@ -6,6 +6,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
+using System.Collections.Generic;
 
 namespace WebAdressbookTests
 {
@@ -19,7 +20,14 @@ namespace WebAdressbookTests
             GroupData group = new GroupData("n98");
             group.Header = "t98";
             group.Footer = "v98";
+            List<GroupData> oldGroups = app.Group.GetGroupList();
             app.Group.createGroup(group);
+
+            List<GroupData> newGroups = app.Group.GetGroupList();
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
         }
         
         [Test]
@@ -28,7 +36,13 @@ namespace WebAdressbookTests
             GroupData group = new GroupData("");
             group.Header = "";
             group.Footer = "";
+            List<GroupData> oldGroups = app.Group.GetGroupList();
             app.Group.createGroup(group);
+            List<GroupData> newGroups = app.Group.GetGroupList();
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
         }
     }
 }

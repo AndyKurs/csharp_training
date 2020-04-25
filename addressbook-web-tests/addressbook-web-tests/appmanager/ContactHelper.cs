@@ -27,6 +27,22 @@ namespace WebAdressbookTests
             return this;
         }
 
+        public List<ContactData> GetContactList()
+        {
+            List<ContactData> contacts = new List<ContactData>();
+            manager.Navigator.GoToContactPage();
+            ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
+            foreach (IWebElement element in elements)
+            {
+                var cels = element.FindElements(By.TagName("td"));
+                string ln = cels[1].Text;
+                string fn = cels[2].Text;
+                contacts.Add(new ContactData(fn, ln));
+            }
+            return contacts;
+
+        }
+
         public ContactHelper Modify(ContactData newDataC)
         {
             manager.Navigator.GoToContactPage();

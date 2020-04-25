@@ -17,13 +17,19 @@ namespace WebAdressbookTests
             GroupData newData = new GroupData("nnn");
             newData.Header = null; // "ttt";
             newData.Footer = null; // "vvv";
-            int groupIndex = 1;
+            int groupIndex = 0;
             app.Navigator.GoToGroupsPage();
             if (!app.Group.IsGropPresent(groupIndex))
             {
                 app.Group.createGroup(newData);
             }
+            List<GroupData> oldGroups = app.Group.GetGroupList();
             app.Group.Modify(groupIndex, newData);
+            List<GroupData> newGroups = app.Group.GetGroupList();
+            oldGroups[0].Name = newData.Name;
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
         }
     }
 }

@@ -27,6 +27,19 @@ namespace WebAdressbookTests
             return this;
         }
 
+        public List<GroupData> GetGroupList()
+        {
+            List<GroupData> groups = new List<GroupData>();
+            manager.Navigator.GoToGroupsPage();
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
+            foreach (IWebElement element in elements)
+            {
+                groups.Add(new GroupData(element.Text));
+            }
+            return groups;
+        
+        }
+
         public GroupHelper Modify(int v, GroupData newData)
         {
             manager.Navigator.GoToGroupsPage();
@@ -103,7 +116,7 @@ namespace WebAdressbookTests
 
         public GroupHelper SelectGroup(int v)
         {
-            driver.FindElement(By.XPath("//span[" + v + "]/input")).Click(); //By.Name("selected[]")).Click();
+            driver.FindElement(By.XPath("//span[" + (v+1) + "]/input")).Click(); //By.Name("selected[]")).Click();
             return this;
         }
     }
