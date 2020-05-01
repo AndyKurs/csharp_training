@@ -88,6 +88,12 @@ namespace WebAdressbookTests
             return this;
         }
 
+        public ContactHelper SelectContactForDetails()
+        {
+            driver.FindElement(By.XPath("//img[@alt='Details']")).Click();
+            return this;
+        }
+
         public ContactHelper Remove()
         {
             manager.Navigator.GoToContactPage();
@@ -221,7 +227,17 @@ namespace WebAdressbookTests
                 Email3 = eMail3
 
             };
-            //throw new NotImplementedException();
+        }
+        public string GetContactInformationFromPersonForm()
+        {
+            manager.Navigator.GoToHomePage();
+            SelectContactForDetails();
+            
+            IWebElement content = driver.FindElement(By.Id("content"));
+
+            string text = content.Text;
+
+            return text;
         }
 
     }

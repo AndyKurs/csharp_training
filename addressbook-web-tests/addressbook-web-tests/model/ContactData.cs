@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 
 namespace WebAdressbookTests
@@ -95,6 +96,46 @@ namespace WebAdressbookTests
             }
         }
 
+        public string ToContentCompare()
+
+        {
+            string text = Fname + " " + Lname + "\r\n";
+            if (Address != null && Address.Length > 0)
+            {
+                text += Address + "\r\n";
+            }
+            text += "\r\n";
+            if (HomePhone != null && HomePhone.Length > 0)
+            {
+                text += "H: " + HomePhone + "\r\n";
+            }
+            if (MobilePhone != null && MobilePhone.Length > 0)
+            {
+                text += "M: " + MobilePhone + "\r\n";
+            }
+            if (WorkPhone != null && WorkPhone.Length > 0)
+            {
+                text += "W: " + WorkPhone + "\r\n";
+            }
+            text += "\r\n";
+            if (Email != null && Email.Length > 0)
+            {
+                text += Email + "\r\n";
+            }
+            if (Email2 != null && Email2.Length > 0)
+            {
+                text += Email2 + "\r\n";
+            }
+            if (Email3 != null && Email3.Length > 0)
+            {
+                text += Email3;
+            }
+            
+            return text;
+
+          
+        }
+
         public string AllEmails
         {
             get
@@ -120,7 +161,7 @@ namespace WebAdressbookTests
             {
                 return "";
             }
-            return phone.Replace(" ","").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
+            return Regex.Replace(phone, "[ ()-]","") + "\r\n";
         }
 
         private string CleanUpM(string email)
