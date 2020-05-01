@@ -31,6 +31,7 @@ namespace WebAdressbookTests
 
         public int GetGroupCount()
         {
+            manager.Navigator.GoToGroupsPage();
             return driver.FindElements(By.CssSelector("span.group")).Count;
         }
 

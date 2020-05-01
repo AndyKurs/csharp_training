@@ -13,12 +13,25 @@ namespace WebAdressbookTests
     [TestFixture]
     public class ContactCreationTests : AuthTestBase
     {
-        
-
-        [Test]
-        public void ContactCreationTest()
+        public static IEnumerable<ContactData> RandomContactDataProvider()
         {
-            ContactData contact = new ContactData("Ivan", "Grozniy");
+            List<ContactData> contacts = new List<ContactData>();
+            for (int i = 0; i < 5; i++)
+            {
+                // TODO: why do you need to initialze fields twice???
+                contacts.Add(new ContactData(GenerateRandomString(10), GenerateRandomString(10)));
+                //{
+                //    Fname = GenerateRandomString(10),
+                //    Lname = GenerateRandomString(10)
+                //});
+            }
+            return contacts;
+        }
+
+        [Test, TestCaseSource("RandomContactDataProvider")]
+        public void ContactCreationTest(ContactData contact)
+        {
+             //= new ContactData("Ivan", "Grozniy");
             //contact.Sname = "Petrovich";
             //contact.Lname = "Pupkin";
             List<ContactData> oldContacts = app.Contact.GetContactList();

@@ -99,38 +99,54 @@ namespace WebAdressbookTests
         public string ToContentCompare()
 
         {
-            string text = Fname + " " + Lname + "\r\n";
+            string textAddr = "";
+            string textPhones = "";
+            string textMails = "";
+
+            string text = Fname + " " + Lname;
             if (Address != null && Address.Length > 0)
             {
-                text += Address + "\r\n";
+                textAddr = "\r\n" + Address;
             }
-            text += "\r\n";
+            //text += "\r\n";
             if (HomePhone != null && HomePhone.Length > 0)
             {
-                text += "H: " + HomePhone + "\r\n";
+                textPhones = "\r\nH: " + HomePhone;
             }
             if (MobilePhone != null && MobilePhone.Length > 0)
             {
-                text += "M: " + MobilePhone + "\r\n";
+                textPhones += "\r\nM: " + MobilePhone;
             }
             if (WorkPhone != null && WorkPhone.Length > 0)
             {
-                text += "W: " + WorkPhone + "\r\n";
+                textPhones += "\r\nW: " + WorkPhone;
             }
-            text += "\r\n";
+            //text += "\r\n";
             if (Email != null && Email.Length > 0)
             {
-                text += Email + "\r\n";
+                textMails = "\r\n" + Email;
             }
             if (Email2 != null && Email2.Length > 0)
             {
-                text += Email2 + "\r\n";
+                textMails += "\r\n" + Email2;
             }
             if (Email3 != null && Email3.Length > 0)
             {
-                text += Email3;
+                textMails += "\r\n" + Email3;
             }
-            
+            if (textAddr.Length > 0)
+            {
+                text += textAddr;
+            }
+            if (textPhones.Length>0)
+            {
+                text += "\r\n" + textPhones;
+            }
+            if (textMails.Length > 0)
+            {
+                text += "\r\n" + textMails;
+            }
+
             return text;
 
           

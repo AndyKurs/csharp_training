@@ -25,7 +25,7 @@ namespace WebAdressbookTests
 
         private ApplicationManager()
         {
-            driver = new FirefoxDriver();
+            driver = new FirefoxDriver("C:\\Windows\\SysWOW64\\");
             baseURL = "http://localhost";
             loginHelper = new LoginHelper(this);
             navigationHelper = new NavigationHelper(this, baseURL);
