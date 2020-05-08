@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 
 namespace WebAdressbookTests
 {
-    public class GroupData : IEquatable<GroupData>, IComparable<GroupData>
+    public class GroupData : Data, IEquatable<GroupData>, IComparable<GroupData>
     {
         //private string name;
         //private string header = "";
         //private string footer = "";
-
+        public GroupData()
+        {
+        }
         public GroupData(string name)
         {
             Name = name;

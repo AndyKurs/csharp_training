@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 
 namespace WebAdressbookTests
 {
-    public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
+    public class ContactData : Data, IEquatable<ContactData>, IComparable<ContactData>
     {
         private string allPhones;
         private string allEmails;
@@ -17,6 +17,9 @@ namespace WebAdressbookTests
         //private string sname = "";
         //private string lname = "";
 
+        public ContactData()
+        {
+        }
         public ContactData(string fname, string lname)
         {
             Fname = fname;
