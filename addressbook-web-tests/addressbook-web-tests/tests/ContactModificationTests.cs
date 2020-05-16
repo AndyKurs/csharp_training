@@ -25,14 +25,14 @@ namespace WebAdressbookTests
                 ContactData newDataC = new ContactData("Juaroslav", "Ivanchikoff");
                 app.Contact.createContact(newDataC);
             }
-            List<ContactData> oldContacts = app.Contact.GetContactList();
+            List<ContactData> oldContacts = ContactData.GetAll();//app.Contact.GetContactList();
             ContactData oldData = oldContacts[0];
 
             ContactData update = new ContactData("Peter", "The Great");
-            app.Contact.Modify(update);
+            app.Contact.Modify(oldData, update);
 
             Assert.AreEqual(oldContacts.Count, app.Contact.GetContactCount());
-            List<ContactData> newContacts = app.Contact.GetContactList();
+            List<ContactData> newContacts = ContactData.GetAll();//app.Contact.GetContactList();
 
             oldContacts[0] = update;
 

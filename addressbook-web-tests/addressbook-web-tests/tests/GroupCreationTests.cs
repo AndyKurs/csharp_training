@@ -4,6 +4,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Xml;
+using System.Linq;
 using System.Xml.Serialization;
 using NUnit.Framework;
 using Newtonsoft.Json;
@@ -15,7 +16,7 @@ using System.Collections.Generic;
 namespace WebAdressbookTests
 {
     [TestFixture]
-    public class GroupCreationTests : AuthTestBase
+    public class GroupCreationTests : GroupTestBase
     {
         public static IEnumerable<GroupData> RandomGroupDataProvider()
         {
@@ -66,17 +67,30 @@ namespace WebAdressbookTests
             //GroupData group = new GroupData("n98");
             //group.Header = "t98";
             //group.Footer = "v98";
-            List<GroupData> oldGroups = app.Group.GetGroupList();
+            List<GroupData> oldGroups = GroupData.GetAll();  //app.Group.GetGroupList();
             app.Group.createGroup(group);
 
             Assert.AreEqual(oldGroups.Count + 1, app.Group.GetGroupCount());
-            List<GroupData> newGroups = app.Group.GetGroupList();
+            List<GroupData> newGroups = GroupData.GetAll();  //app.Group.GetGroupList();
             oldGroups.Add(group);
             oldGroups.Sort();
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
         }
-        
+
+        [Test]
+        public void TestDBConnectivity()
+        {
+            DateTime start = DateTime.Now;
+            List<GroupData> fromUi = app.Group.GetGroupList();
+            DateTime end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
+            start = DateTime.Now;
+            List<GroupData> fromDb = GroupData.GetAll();
+            end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
+        }
+
         //[Test]
         //public void EmptyGroupCreationTest()
         //{

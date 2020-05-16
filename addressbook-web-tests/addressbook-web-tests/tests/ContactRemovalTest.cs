@@ -13,7 +13,7 @@ namespace WebAdressbookTests
 {
     [TestFixture]
    
-    public class ContactRemovalTests : AuthTestBase
+    public class ContactRemovalTests : ContactTestBase
     {
         [Test]
         public void ContactRemovalTest()
@@ -25,13 +25,14 @@ namespace WebAdressbookTests
                 app.Contact.createContact(newDataC);
             }
 
-            List<ContactData> oldContacts = app.Contact.GetContactList();
-            app.Contact.Remove();
+            List<ContactData> oldContacts = ContactData.GetAll();//app.Contact.GetContactList();
+            ContactData toBeRemoved = oldContacts[0];
+            app.Contact.Remove(toBeRemoved);
             System.Threading.Thread.Sleep(1000);
             Assert.AreEqual(oldContacts.Count - 1, app.Contact.GetContactCount());
 
-            List<ContactData> newContacts = app.Contact.GetContactList();
-           ContactData toBeRemoved = oldContacts[0];
+            List<ContactData> newContacts = ContactData.GetAll();  //app.Contact.GetContactList();
+           //ContactData toBeRemoved = oldContacts[0];
             oldContacts.RemoveAt(0);
             //Assert.AreEqual(oldContacts, newContacts);
             oldContacts.Sort();

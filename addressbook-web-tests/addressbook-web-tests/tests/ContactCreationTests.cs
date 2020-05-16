@@ -22,7 +22,7 @@ namespace WebAdressbookTests
             List<ContactData> contacts = new List<ContactData>();
             for (int i = 0; i < 5; i++)
             {
-                
+
                 contacts.Add(new ContactData(GenerateRandomString(10), GenerateRandomString(10)));
                 //{
                 //    Fname = GenerateRandomString(10),
@@ -34,7 +34,7 @@ namespace WebAdressbookTests
 
         public static IEnumerable<ContactData> ContactDataFromXmlFile()
         {
-            return (List<ContactData>) new XmlSerializer(typeof(List<ContactData>))
+            return (List<ContactData>)new XmlSerializer(typeof(List<ContactData>))
                 .Deserialize(new StreamReader(@"contacts.xml"));
         }
 
@@ -47,20 +47,32 @@ namespace WebAdressbookTests
         [Test, TestCaseSource("ContactDataFromJsonFile")]
         public void ContactCreationTest(ContactData contact)
         {
-             //= new ContactData("Ivan", "Grozniy");
+            //= new ContactData("Ivan", "Grozniy");
             //contact.Sname = "Petrovich";
             //contact.Lname = "Pupkin";
-            List<ContactData> oldContacts = app.Contact.GetContactList();
+            List<ContactData> oldContacts = ContactData.GetAll(); //app.Contact.GetContactList();
             app.Contact.createContact(contact);
             Assert.AreEqual(oldContacts.Count + 1, app.Contact.GetContactCount());
-            List<ContactData> newContacts = app.Contact.GetContactList();
+            List<ContactData> newContacts = ContactData.GetAll();//app.Contact.GetContactList();
             //Assert.AreEqual(oldContacts.Count + 1, newContacts.Count);
             oldContacts.Add(contact);
             oldContacts.Sort();
             newContacts.Sort();
             Assert.AreEqual(oldContacts, newContacts);
         }
+
+        [Test]
+        public void TestDBConnectivityCont()
+        {
+            DateTime start = DateTime.Now;
+            List<ContactData> fromUi = app.Contact.GetContactList();
+            DateTime end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
+            start = DateTime.Now;
+            List<ContactData> fromDb = ContactData.GetAll();
+            end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
+        }
     }
-    
 }
 
