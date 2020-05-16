@@ -27,6 +27,52 @@ namespace WebAdressbookTests
             return this;
         }
 
+        public void DelContactFromGroup(ContactData contact, GroupData group)
+        {
+            manager.Navigator.GoToContactPage();
+            manager.Navigator.GoToHomePage();
+            SelectGroupAtFilter(group.Name);
+            SelectContact(contact.Id);
+            
+            RemoveContactFromGroup();
+            new WebDriverWait(driver, TimeSpan.FromSeconds(10)).Until(d => d.FindElements(By.CssSelector("div.msgbox")).Count > 0);
+        }
+
+        private void RemoveContactFromGroup()
+        {
+            driver.FindElement(By.Name("remove")).Click();
+        }
+
+        private void SelectGroupAtFilter(string name)
+        {
+            new SelectElement(driver.FindElement(By.Name("group"))).SelectByText(name);
+        }
+
+        public void AddContactToGroup(ContactData contact, GroupData group)
+        {
+            manager.Navigator.GoToContactPage();
+            manager.Navigator.GoToHomePage();
+            ClearGroupFilter();
+            SelectContact(contact.Id);
+            SelectGroupToAdd(group.Name);
+            CommitAddingcontactToGroup();
+            new WebDriverWait(driver, TimeSpan.FromSeconds(10)).Until(d => d.FindElements(By.CssSelector("div.msgbox")).Count > 0);        }
+
+        private void CommitAddingcontactToGroup()
+        {
+            driver.FindElement(By.Name("add")).Click();
+        }
+
+        private void SelectGroupToAdd(string name)
+        {
+            new SelectElement(driver.FindElement(By.Name("to_group"))).SelectByText(name);
+        }
+
+        public void ClearGroupFilter()
+        {
+            new SelectElement(driver.FindElement(By.Name("group"))).SelectByText("[all]");
+        }
+
         private List<ContactData> contactCache = null;
 
         public int GetContactCount()
@@ -188,7 +234,7 @@ namespace WebAdressbookTests
 
         public ContactHelper SelectContact(string id) 
         {
-            driver.FindElement(By.XPath("//input[@id='"+id+"']")).Click();
+            driver.FindElement(By.XPath("//input[@id='"+id+"']")).Click(); // By.Id(id)
             acceptNextAlert = true;
             return this;
         }
