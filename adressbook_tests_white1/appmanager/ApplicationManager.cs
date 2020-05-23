@@ -1,0 +1,41 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using TestStack.White;
+using TestStack.White.UIItems.WindowItems;
+using TestStack.White.UIItems;
+
+namespace adressbook_tests_white1
+{
+    public class ApplicationManager
+    {
+        public static string WINTITLE = "Free Address Book";
+        
+        private GroupHelper groupHelper;
+
+        public ApplicationManager()
+        {
+            Application app = Application.Launch(@"C:\Program Files (x86)\GAS Softwares\Free Address Book\AddressBook.exe");
+
+            MainWindow = app.GetWindow(WINTITLE);
+            groupHelper = new GroupHelper(this);
+        }
+
+        public void Stop()
+        {
+            MainWindow.Get<Button>("uxExitAddressButton").Click();
+           
+        }
+
+        public Window MainWindow { get; private set;  }
+       
+
+        public GroupHelper Groups
+        {
+            get
+            {
+                return groupHelper;
+            }
+        }
+    }
+}
