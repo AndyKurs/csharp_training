@@ -19,7 +19,9 @@ namespace mantisBT_Tests
         protected LoginHelper loginHelper;
         protected NavigationHelper navigationHelper;
         protected ProjectHelper projectHelper;
-        
+
+        public APIHelper API { get; set; }
+
         private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
         private ApplicationManager()
@@ -29,7 +31,8 @@ namespace mantisBT_Tests
             loginHelper = new LoginHelper(this);
             navigationHelper = new NavigationHelper(this, baseURL);
             projectHelper = new ProjectHelper(this);
-            
+            API = new APIHelper(this);
+
         }
 
         ~ApplicationManager()

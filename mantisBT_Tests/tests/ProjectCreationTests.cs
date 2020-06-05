@@ -18,7 +18,7 @@ namespace mantisBT_Tests
     [TestFixture]
     public class ProjectCreationTests : AuthTestBase
     {
-       
+
         [Test]
         public void ProjectCreationTest()
         {
@@ -27,9 +27,10 @@ namespace mantisBT_Tests
             ProjectData project = new ProjectData("n98+" + now);
             List<ProjectData> oldProjects = app.Project.GetProjectList();
             app.Project.createProject(project);
-            
+
+
             Assert.AreEqual(oldProjects.Count + 1, app.Project.GetProjectCount());
-            
+
             List<ProjectData> newProjects = app.Project.GetProjectList();
             oldProjects.Add(project);
             oldProjects.Sort();
@@ -37,7 +38,8 @@ namespace mantisBT_Tests
             Assert.AreEqual(oldProjects, newProjects);
         }
 
-       
+
+
     }
 }
 
